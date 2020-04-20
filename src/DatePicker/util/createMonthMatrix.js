@@ -13,8 +13,8 @@ const createMonthMatrix = (year, month) => {
   const firstDay = date.get('day');
   const daysInMonth = date.daysInMonth();
 
-  const padding = (firstDay + daysInMonth) % 7 + 7;
-  const upperBound = firstDay + daysInMonth + padding;
+  // const padding = (firstDay + daysInMonth) % 7 + 7;
+  const upperBound = 7 * 7; // firstDay + daysInMonth + padding;
 
   const calendarMonth = [];
 
