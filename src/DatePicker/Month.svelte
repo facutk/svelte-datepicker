@@ -41,7 +41,7 @@
   <table>
     <tr>
       {#each dayNames as dayName}
-        <Day display={dayName} disabled />
+        <th>{dayName}</th>
       {/each}
     </tr>
 
@@ -50,7 +50,7 @@
         {#each weekDays as day}
           <Day
             display={day}
-            disabled={!day}
+            disabled={!day || dayjs().isAfter(`${year}-${month}-${day}`)}
             onClick={handleDayClick}
             highlighted="{highlightedDays[day]}"
           />
@@ -68,6 +68,11 @@
   table {
     border-collapse: collapse;
     border-spacing: 0;
+  }
+
+  th {
+    font-size: 0.75em;
+    padding: 11px;
   }
 
   @media (max-width: 600px) {

@@ -36,6 +36,7 @@
   .disabled {
     cursor: auto;
     border: none;
+    color: #ccc;
   }
 
   .highlighted {
