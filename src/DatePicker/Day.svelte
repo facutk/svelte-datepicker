@@ -13,7 +13,8 @@
 
 <td
   on:click={handleClick}
-  class:disabled class:highlighted
+  class:disabled
+  class:highlighted
 >
   {display || ''}
 </td>
