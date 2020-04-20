@@ -5,6 +5,7 @@
   import 'dayjs/locale/es';
   dayjs.locale('es')
   
+  let isOpen = false;
   let date = dayjs();
   let range = [];
   let count = 0;
@@ -42,10 +43,20 @@
 
   $: currentMonth = getYearMonthFromDate(date);
   $: nextMonth = getYearMonthFromDate(date, 1);
+  $: open = isOpen;
 </script>
 
 <svelte:window on:keydown="{handleKeyDown}" />
-<main>
+
+<input
+  type="text" value="{JSON.stringify(range, undefined, 2)}"
+  on:focus={() => { isOpen = true; }}
+  on:blur={() => { isOpen = false; }}
+>
+
+<main
+  class:open
+>
   <header>
     <button on:click={handlePrevMonth}>
       <svg viewBox="0 0 1000 1000">
@@ -76,9 +87,7 @@
   </section>
 </main>
 
-<pre>
-  {JSON.stringify(range, undefined, 2)}
-</pre>
+
 
 <style>
   main {
@@ -86,6 +95,7 @@
     padding: 1em;
     margin: 0 auto;
     max-width: 570px;
+    display: none;
   }
 
   button {
@@ -113,5 +123,9 @@
     section {
       flex-direction: column;
     }
+  }
+
+  main.open {
+    display: block;
   }
 </style>
